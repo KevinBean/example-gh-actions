@@ -47,41 +47,6 @@ And after you install the libraries you need for the program, by `pip install`, 
 On 2023-02-03, the weather API in this article is expired.
 So we will not use it.
 
-### The author's code
-
-``` python
-# Import Packages
-import requests
-import pandas as pd
-
-# Initialize dictionary of cities
-cities = {    "San Francisco": None,    "Seoul": None,    "Chennai": None,    "Cape Town": None}
-
-# Endpoint to query for IDs
-BASE_URL_LOCATION = "https://www.metaweather.com/api/location/search/?query=" 
-
-# Query for WOE ID values
-for city in cities.keys():
-    location = BASE_URL_LOCATION + city.lower().replace(" ", "+")
-    print(location)
-    payload = requests.get(location).json()        
-    cities[city] = payload[0]["woeid"]
-
-# Endpoint to query for weather
-BASE_URL_WEATHER = "https://www.metaweather.com/api/location/"
-
-# Query weather data
-curr_weather = []
-for city, woe_id in cities.items():    
-    payload = requests.get(BASE_URL_WEATHER + str(woe_id)).json()        
-    curr_weather.append(        {            "time_utc": payload["consolidated_weather"][0]["created"],            "location": city,            "temperature_c": payload["consolidated_weather"][0]["the_temp"],            "weather_state": payload["consolidated_weather"][0]["weather_state_name"]        
-    }    
-    )
-
-print(pd.DataFrame(curr_weather))
-    
-```
-
 ## We will try - Append Data to File
 
 ```jupyter
@@ -107,9 +72,9 @@ except:
 df.to_csv("square.csv", index=False)
 ```
 
-all of the code exists in a `.ipynb` file, which is a Jupyter notebook file we can run on google Colab.
+This code create a "squere.csv" file, and if there is already a file with that name exist, the old file's name is changed to "latest.csv". All of the code exists in a `.ipynb` file, which is a Jupyter notebook file we can run on google Colab or other python environment.
 
-# Setting up Github Actions
+# Setting up Github Actions to run the code on a schedule
 
 ## Define a workflow using a YAML file
 
