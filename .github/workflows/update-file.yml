@@ -33,4 +33,4 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add square.csv
           git commit -m "Updated square.csv on `date` with GitHub Actions"
-          git push origin master:master
+          git push origin master
