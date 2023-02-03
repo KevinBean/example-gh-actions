@@ -8,7 +8,7 @@ on:
 jobs:
   update_file:
     name: update CSV file with the current time
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
