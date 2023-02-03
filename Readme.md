@@ -137,9 +137,9 @@ In the `/.github/workflows/update-file.yml` file, first, we give the `name` of o
 name: Update CSV File
 
 on:
-	schedule:
-		- cron: '30 0-23/1 * * *'
-	workflow_dispatch:
+  schedule:
+    - cron: '30 0-23/1 * * *'
+  workflow_dispatch:
 ```
 
 The schedule is a [[%cron]] expression, and keep in mind that the time will be in **UTC**.
@@ -152,9 +152,9 @@ List out the specific tasks that will need to be run in our workflow. `runs-on: 
 
 ```yaml
 jobs:
-	update_file:
-		name: update CSV file with the current time
-		runs-on: ubuntu-lastest
+  update_file:
+    name: update CSV file with the current time
+    runs-on: ubuntu-lastest
 ```
 
 under the `update_file` task, there are some steps.
@@ -163,8 +163,8 @@ under the `update_file` task, there are some steps.
 
 ```yaml
 steps:
-	- name: Checkout
-	  uses: actions/checkout@v2
+  - name: Checkout
+    uses: actions/checkout@v2
 ```
 
 - set up Python on the Ubuntu virtual machine
