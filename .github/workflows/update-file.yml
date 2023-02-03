@@ -1,36 +1,36 @@
 name: Update CSV File
 
 on:
-	schedule:
-		- cron: '0 0-23/1 * * *'
-	workflow_dispatch:
+  schedule:
+    - cron: '0 0-23/1 * * *'
+  workflow_dispatch:
 
 jobs:
-	update_file:
-		name: update CSV file with the current time
-		runs-on: ubuntu-lastest
-		steps:
-		  - name: Checkout
-		    uses: actions/checkout@v3
-		    
-		  - name: Setup Python   
-		    uses: actions/setup-python@v4  
-		    with:    
-		      python-version: '3.7'    
-		      cache: 'pip'
-		      
-		  - name: Install Dependencies 
- 		    run: pip install -r requirements.txt
- 		    
- 		  - name: Run Script and Update Plot  
- 		    run: |    
- 		      jupyter nbconvert --to script square.ipynb
- 		      python square.py
- 		      
- 		  - name: Commit and Push Changes  
- 		    run: | 
- 		      git config --local user.email "actions@github.com"
- 		      git config --local user.name "GitHub Actions"
- 		      git add square.csv
- 		      git commit -m "Updated square.csv on `date` with GitHub Actions"
- 		      git push origin master
+  update_file:
+    name: update CSV file with the current time
+    runs-on: ubuntu-lastest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Python   
+        uses: actions/setup-python@v4  
+        with:    
+          python-version: '3.7'    
+          cache: 'pip'
+          
+      - name: Install Dependencies 
+        run: pip install -r requirements.txt
+         
+      - name: Run Script and Update Plot  
+        run: |    
+          jupyter nbconvert --to script square.ipynb
+          python square.py
+           
+      - name: Commit and Push Changes  
+        run: | 
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add square.csv
+          git commit -m "Updated square.csv on `date` with GitHub Actions"
+          git push origin master
