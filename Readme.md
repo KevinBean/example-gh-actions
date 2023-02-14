@@ -220,3 +220,9 @@ jobs:
           git commit -m "Updated square.csv on `date` with GitHub Actions"
           git push origin master
 ```
+
+# Pros and Cons
+
+GitHub provides an easy-to-use solution for doing that. It is a cloud solution, and GitHub can provide a proper environment for you to run the Python code, so we won't need to worry about a local environment.
+
+But it only supports public repositories for a free account, so if we want to run a private code, we need a paid enterprise account.
